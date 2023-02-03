@@ -4,3 +4,5 @@
 ## Branches ##
 
 **LE-1**  - Initializing an empty Laravel project to start from the beginning. And creating first branch by the gitflow model.
+
+**LE-2**  - Adding and configuring Fortify with Sanctum. Create a user seeder and resource. Return authorized user through a resource.
