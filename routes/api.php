@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuoteSourceController;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,5 +23,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get("/", function () {
             return new UserResource(Auth::user());
         })->name('user');
+    });
+
+    Route::prefix('quotesource')->group(function () {
+        Route::get('/list', [QuoteSourceController::class, 'list'])->name('quotesource.list');
     });
 });
