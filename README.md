@@ -6,3 +6,5 @@
 **LE-1**  - Initializing an empty Laravel project to start from the beginning. And creating first branch by the gitflow model.
 
 **LE-2**  - Adding and configuring Fortify with Sanctum. Create a user seeder and resource. Return authorized user through a resource.
+
+**LE-3**  - Adding a QuoteRequest as a client request entity for a new quote. Store this query in the database and redirect the user to the main page. Creation of an administrative part (api) to get a list of client requests and a list of available statuses.

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuoteRequestController;
+use App\Http\Controllers\QuoteSourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return 'Front page should be here!';
+})->name('frontpage');
+
+Route::post('/quoterequest', [QuoteRequestController::class, 'store'])->name('quoterequest.store');
