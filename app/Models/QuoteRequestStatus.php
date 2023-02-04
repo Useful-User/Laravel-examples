@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuoteSource extends Model
+class QuoteRequestStatus extends Model
 {
     use HasFactory;
 
@@ -23,15 +23,10 @@ class QuoteSource extends Model
      */
     protected $fillable = [
         'name',
-        'key',
-        'url',
-        'resource',
-        'priority',
-        'availability',
     ];
 
     /**
-     * Get the Quote Requests associated with this Quote Source.
+     * Get the quote requests with this status.
      */
     public function quoteRequests()
     {
