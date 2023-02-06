@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\UpdateQuoteRequestRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,5 +37,18 @@ class QuoteSource extends Model
     public function quoteRequests()
     {
         return $this->hasMany(QuoteRequest::class);
+    }
+
+
+    /**
+     * Get availability of Quote Source
+     * 
+     * @param  \App\Http\Requests\UpdateQuoteRequestRequest  $request
+     * @return bool
+     * 
+     */
+    public static function methodAvailable(UpdateQuoteRequestRequest $request)
+    {
+        return boolval(self::where('id', $request->quote_source_id)->where('availability', 1)->count());
     }
 }

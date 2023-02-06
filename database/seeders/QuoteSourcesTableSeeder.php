@@ -16,21 +16,27 @@ class QuoteSourcesTableSeeder extends Seeder
     public function run()
     {
         DB::table('quote_sources')->insert([
-            'name'      => 'quotes.rest',
-            'url'       => 'https://quotes.rest/',
-            'priority'  => 1,
+            'name'          => 'quotes.rest',
+            'url'           => 'https://quotes.rest/qod?language=en',
+            'priority'      => 1,
+            'availability'  => 1,
+            'resource'      => 'QuotesRest',
         ]);
-        
+
         DB::table('quote_sources')->insert([
-            'name'      => 'catfact',
-            'url'       => 'https://catfact.ninja/fact',
-            'priority'  => 3,
+            'name'          => 'catfact',
+            'url'           => 'https://catfact.ninja/fact',
+            'priority'      => 3,
+            'availability'  => 1,
+            'resource'      => 'Catfact',
         ]);
-        
+
         DB::table('quote_sources')->insert([
-            'name'      => 'favqs',
-            'url'       => 'https://favqs.com/api/qotd',
-            'priority'  => 2,
+            'name'          => 'favqs',
+            'url'           => 'https://favqs.com/api/qotd',
+            'priority'      => 2,
+            'availability'  => 1,
+            'resource'      => 'Favqs',
         ]);
     }
 }
