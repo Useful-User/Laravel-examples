@@ -5,31 +5,39 @@
 
 ### Resources ###  
 One of the use cases for resources is the pre-known and controlled output of information. The model may change during development. As a result, confidential information may be compromised. To avoid this, you can use Resources.  
-The resource can be used for a single object or for a collection of objects.
-
+The resource can be used for a single object or for a collection of objects.  
 *Examples:*  
-Without rosource: app/Http/Controllers/QuoteRequestController.php - list method  
-Single object: app/Http/Controllers/QuoteRequestController.php - show method  
-Collection of objects: app/Http/Controllers/QuoteSourceController.php - list and show methods
+Without rosource: [list method](app/Http/Controllers/QuoteRequestController.php)  
+Single object: [show method](app/Http/Controllers/QuoteRequestController.php)  
+Collection of objects: [list and show methods](app/Http/Controllers/QuoteSourceController.php)  
 
 
 ### Interfaces ###  
 Interfaces in laravel are called - Contracts. The framework's standard contracrs can be found at vendor/laravel/framework/src/Illuminate/Contracts  
 I am creating a Quote Source contract and it must be implemented on every quote source.  
 *Examples:*  
-Contract (Interface): app/Contracts/QuoteSourceServiceContract.php  
-Classes: app/Services/QuoteSources
+[Contract (Interface)](app/Contracts/QuoteSourceServiceContract.php)  
+[Classes](app/Services/QuoteSources)
 
 ### Factory (Factory Method) ###
 Since we have several quote sources and they all implement the same interface, we can create a Factory. The factory will return a specific object based on the input. Now we can add more sources with different logic, but we will still use the same Factory to use them.  
 *Examples:*  
-Factory: app/Factories/QuoteSourceFactory.php - factory returns the object based on the source id from the database.  
-Usage: app/Http/Controllers/QuoteRequestController.php - update method
+[Factory](app/Factories/QuoteSourceFactory.php) - returns the object based on the source id from the database.  
+Usage: [update method](app/Http/Controllers/QuoteRequestController.php)  
+
+### Sessions and unique tokens ###
+How to determinate user while showing request information?  
+One way is to use Laravel sessions. You can put some information into the session and validate it when the user makes a request.  
+How to hide request id to prevent information disclosure?  
+You can generate a unique random token when starting a conversation and store it in the session. Reflash this session while the conversation is in progress, and reset when the final answer is given.  
+*Examples:*  
+My interpretation contains [Signature service](app/Services/Signature.php) with unique token, hash and validation methods. I use the [ValidateInternalSignature](app/Http/Middleware/ValidateInternalSignature.php) middleware to validate requests.  
+Middleware is used by the "back" group in [web routes](routes/web.php).  
 
 ### Other interesting parts ###
-- Changing the response code on failed validation: app/Http/Requests/StoreQuoteRequestRequest.php  
-- Using Laravel Query Builder instead of Eloquent ORM: app/Services/QuoteRequestService.php - getFiltered method  
-- Using data from related tables in Resource: app/Http/Resources/ListQuoteRequestResource.php  
+- Changing the response code on failed validation: [failedValidation method](app/Http/Requests/StoreQuoteRequestRequest.php)  
+- Using Laravel Query Builder instead of Eloquent ORM: [getFiltered method](app/Services/QuoteRequestService.php)  
+- Using data from related tables in [Resource](app/Http/Resources/ListQuoteRequestResource.php)  
 
 
 ## Branches ##

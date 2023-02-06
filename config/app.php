@@ -212,4 +212,15 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Other custom parameters
+    |--------------------------------------------------------------------------
+    |
+    | Additional options from .env file
+    |
+    */
+
+    'internal_key'  => env('INTERNAL_KEY'),
+
 ];
