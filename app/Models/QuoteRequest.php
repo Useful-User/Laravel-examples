@@ -24,7 +24,7 @@ class QuoteRequest extends Model
      */
     public function status()
     {
-        return $this->belongsTo(QuoteRequestStatus::class);
+        return $this->belongsTo(QuoteRequestStatus::class, 'quote_request_status_id');
     }
 
     /**

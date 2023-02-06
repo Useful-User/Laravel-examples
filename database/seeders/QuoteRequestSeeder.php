@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\QuoteRequest;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class StatusSeeder extends Seeder
+class QuoteRequestSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,6 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('quote_request_statuses')->insert([
-            ['name' => 'initialized'],
-            ['name' => 'fail'],
-        ]);
+        QuoteRequest::factory(100)->create();
     }
 }
