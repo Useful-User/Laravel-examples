@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Factories\QuoteSourceFactory;
+use App\Http\Requests\ListQuoteRequestRequest;
 use App\Http\Requests\StoreQuoteRequestRequest;
 use App\Http\Requests\UpdateQuoteRequestRequest;
+use App\Http\Resources\ListQuoteRequestResource;
 use App\Http\Resources\ShowQuoteRequestResource;
 use App\Models\QuoteRequest;
 use App\Models\QuoteSource;
+use App\Services\QuoteRequestService;
 use Illuminate\Http\Request;
 
 class QuoteRequestController extends Controller
@@ -70,13 +73,14 @@ class QuoteRequestController extends Controller
     }
 
     /**
-     * Get Quote Request.
+     * Get invoices with callbacks by filters.
      *
-     * @param  Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function list(Request $request)
+    public function list(ListQuoteRequestRequest $request)
     {
-        return QuoteRequest::all();
+        $quoteRequests = QuoteRequestService::getFiltered($request);
+        return ListQuoteRequestResource::collection($quoteRequests);
     }
 }
