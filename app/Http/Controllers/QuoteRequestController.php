@@ -73,7 +73,7 @@ class QuoteRequestController extends Controller
     }
 
     /**
-     * Get invoices with callbacks by filters.
+     * Get Quote Requests with callbacks by filters.
      *
      * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
      * @return \Illuminate\Http\Response
