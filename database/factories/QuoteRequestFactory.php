@@ -22,6 +22,7 @@ class QuoteRequestFactory extends Factory
             'external_id'               => $this->faker->unique()->numberBetween(100, 999),
             'quote_request_status_id'   => QuoteRequestStatus::inRandomOrder()->first()->id,
             'quote_source_id'           => QuoteSource::inRandomOrder()->first()->id,
+            'token'                     => $this->faker->unique()->regexify('[a-zA-Z0-9]{10}'),
         ];
     }
 }

@@ -29,7 +29,8 @@ class QuoteSourceController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $quoteRequest = QuoteRequest::where('id', $id)->firstOrFail();          // get QuoteRequest
+        session()->reflash();
+        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();          // get QuoteRequest
         $quoteSources = QuoteSourceService::getQuoteSources($quoteRequest);
         $quoteSources = $quoteSources->sortBy('id')->sortBy('priority');
         return QuoteSourceResource::collection($quoteSources);

@@ -17,6 +17,7 @@ class QuoteRequest extends Model
     protected $fillable = [
         'external_id',
         'quote_request_status_id',
+        'token',
     ];
 
     /**

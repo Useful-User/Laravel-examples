@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class QuoteRequestStatusController extends Controller
 {
     /**
-     * Get list of Invoice statuses.
+     * Get list of Quote Request statuses.
      *
      * @return \Illuminate\Http\Response
      */
@@ -16,7 +16,7 @@ class QuoteRequestStatusController extends Controller
     {
         $data = QuoteRequest::select('quote_request_status_id')
             ->distinct()
-            ->get(['quote_request_status_id'])      // get all invoices statuses
+            ->get(['quote_request_status_id'])      // get all Quote Request statuses
             ->map(function ($item) {                // map function helps separete values from keys
                 return $item->status;
             });

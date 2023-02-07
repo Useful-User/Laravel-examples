@@ -11,6 +11,7 @@ use App\Http\Resources\ShowQuoteRequestResource;
 use App\Models\QuoteRequest;
 use App\Models\QuoteSource;
 use App\Services\QuoteRequestService;
+use App\Services\Signature;
 use Illuminate\Http\Request;
 
 class QuoteRequestController extends Controller
@@ -23,7 +24,8 @@ class QuoteRequestController extends Controller
      */
     public function show($id)
     {
-        $quoteRequest = QuoteRequest::where('id', $id)->firstOrFail();
+        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();
+        session()->reflash();
         return new ShowQuoteRequestResource($quoteRequest);
     }
 
@@ -39,10 +41,11 @@ class QuoteRequestController extends Controller
         // check for availability
         if (!QuoteSource::methodAvailable($request)) abort(400, "Quote Source not allowed");
 
-        $quoteRequest = QuoteRequest::where('id', $id)->firstOrFail();   // get quoteReques
-        $quoteRequest->quote_source_id = $request->quote_source_id;      // add quote_source_id for quoteReques
-        $quoteRequest->save();                                           // save
+        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();   // get quoteReques
+        $quoteRequest->quote_source_id = $request->quote_source_id;         // add quote_source_id for quoteReques
+        $quoteRequest->save();                                              // save
 
+        session()->reflash();
         $quote_factory = new QuoteSourceFactory();
         $quote_service = $quote_factory->getServiceById($request->quote_source_id);
         $quote = $quote_service->getQuote($quoteRequest);
@@ -61,19 +64,20 @@ class QuoteRequestController extends Controller
      */
     public function store(StoreQuoteRequestRequest $request)
     {
-
+        $token = Signature::uniqueToken('quote_requests');
         // creatre Quote Request
-        $quoteRequest = QuoteRequest::create([
+        QuoteRequest::create([
             'external_id'               => $request->external_id,
             'quote_request_status_id'   => 1,
+            'token' => $token,
         ]);
 
         // redirect to front with token and session
-        return redirect('/#' . $quoteRequest->id);
+        return redirect('/#' . $token)->with('s', Signature::internalSignature($token));
     }
 
     /**
-     * Get invoices with callbacks by filters.
+     * Get Quote Requests with callbacks by filters.
      *
      * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
      * @return \Illuminate\Http\Response

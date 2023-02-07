@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class QuoteRequestService
 {
     /**
-     * Get invoices by filters.
+     * Get Quote Request by filters.
      *
      * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
      * @return \Illuminate\Database\Eloquent\Collection
