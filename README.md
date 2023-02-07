@@ -40,6 +40,20 @@ Middleware is used by the "back" group in [web routes](routes/web.php).
 - Using data from related tables in [Resource](app/Http/Resources/ListQuoteRequestResource.php)  
 
 
+### The logic of working (on the example of Postman) ###
+1. Import Postman [environment and collection](documentation/postman)
+2. Set Development environment.
+3. Administrative part starts with Auth:
+    - csrf
+    - login
+    - any other requests
+4. Customer side:
+    - POST request to /quoterequest - send an external id and get a redirect link to the front page. This link contain **token** after #. For example: http://localhost/#psfmYhZ1Uu
+    - GET request to /back/quoterequest/{token} - should contain **token** from the redirect link. This request will return information about qurrent request.
+    - GET request to /back/quotesources/{token} - should also contain **token** from the redirect link. Returns quote sources available for this request.
+    - PUT request to /back/quoterequest - should contain the id of the quote source. Returns a quote!
+
+
 ## Branches ##
 This project follows the gitflow branching model.
 
@@ -52,3 +66,5 @@ This project follows the gitflow branching model.
 **LE-4** - Adding interface (Contract) for Quote source. Creation of 3 sources of quotes as an example. Each source uses its own implementation of the contract. Creating a 'factory method' to get the QuoteSource object and developing client and administrative parts of the project.
 
 **LE-5** - Adding fake quote requests to the database. Creating filtering and pagination logic in the quoterequest/list route. Creating a QuoteRequestService to move the filtering logic from the controller to a separate service.
+
+**LE-6** - Adding a Signature service to create unique tokens, signatures and verify them. Add token to hide internal number of request. Change the working logic from using an id to a token. Adding the Postman collection to the project.
