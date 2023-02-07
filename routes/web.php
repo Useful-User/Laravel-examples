@@ -28,6 +28,6 @@ Route::prefix('back')->middleware('internal.signature')->group(function () {
     Route::get('/quotesources/{id}', [QuoteSourceController::class, 'show'])->name('quotesources.show');
 
     Route::get("/v", function () {
-        return '0.1';
+        return '1.0';
     })->withoutMiddleware('internal.signature')->name('version');
 });

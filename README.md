@@ -55,16 +55,22 @@ Middleware is used by the "back" group in [web routes](routes/web.php).
 
 
 ## Branches ##
-This project follows the gitflow branching model.
+This project follows the gitflow branching model. And [Trello](https://trello.com/b/59M7MZHU/laravel-examples) is used for task tracking
 
-**LE-1** - Initializing an empty Laravel project to start from the beginning. And creating first branch by the gitflow model.
+**MAIN** - Stores the official release history. Current version is 1.0
 
-**LE-2** - Adding and configuring Fortify with Sanctum. Create a user seeder and resource. Return authorized user through a resource.
+release/**1.0** - v1.0
 
-**LE-3** - Adding a QuoteRequest as a client request entity for a new quote. Store this query in the database and redirect the user to the main page. Creation of an administrative part (api) to get a list of client requests and a list of available statuses.
+**Develop** - Integration branch for features. All magic happens here! 🪄
 
-**LE-4** - Adding interface (Contract) for Quote source. Creation of 3 sources of quotes as an example. Each source uses its own implementation of the contract. Creating a 'factory method' to get the QuoteSource object and developing client and administrative parts of the project.
+feature/**LE-6** - Adding a Signature service to create unique tokens, signatures and verify them. Add token to hide internal number of request. Change the working logic from using an id to a token. Adding the Postman collection to the project.
 
-**LE-5** - Adding fake quote requests to the database. Creating filtering and pagination logic in the quoterequest/list route. Creating a QuoteRequestService to move the filtering logic from the controller to a separate service.
+feature/**LE-5** - Adding fake quote requests to the database. Creating filtering and pagination logic in the quoterequest/list route. Creating a QuoteRequestService to move the filtering logic from the controller to a separate service.
 
-**LE-6** - Adding a Signature service to create unique tokens, signatures and verify them. Add token to hide internal number of request. Change the working logic from using an id to a token. Adding the Postman collection to the project.
+feature/**LE-4** - Adding interface (Contract) for Quote source. Creation of 3 sources of quotes as an example. Each source uses its own implementation of the contract. Creating a 'factory method' to get the QuoteSource object and developing client and administrative parts of the project.
+
+feature/**LE-3** - Adding a QuoteRequest as a client request entity for a new quote. Store this query in the database and redirect the user to the main page. Creation of an administrative part (api) to get a list of client requests and a list of available statuses.
+
+feature/**LE-2** - Adding and configuring Fortify with Sanctum. Create a user seeder and resource. Return authorized user through a resource.
+
+feature/**LE-1** - Initializing an empty Laravel project to start from the beginning. And creating first branch by the gitflow model.
