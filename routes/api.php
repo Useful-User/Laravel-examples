@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\QuoteRequestController;
 use App\Http\Controllers\QuoteRequestStatusController;
 use App\Http\Controllers\QuoteSourceController;
