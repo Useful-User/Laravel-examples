@@ -8,5 +8,11 @@ use App\Models\QuoteRequest;
 
 interface QuoteSourceServiceContract
 {
+    /**
+     * Get quote
+     * 
+     * @param \App\Models\QuoteRequest $quoteRequest
+     * @return string Quote as a string
+     */
     public function getQuote(QuoteRequest $quoteRequest): string;
 }
