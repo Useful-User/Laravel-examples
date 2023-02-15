@@ -75,7 +75,8 @@ class QuoteRequestController extends Controller
         ]);
 
         // redirect to front with token and session
-        return redirect('/#' . $token)->with('s', Signature::internalSignature($token));
+        return redirect('/#' . $token)
+            ->with('s', Signature::internalSignature($token));
     }
 
     /**

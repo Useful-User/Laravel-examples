@@ -20,7 +20,9 @@ class QuoteSourceController extends Controller
      */
     public function list()
     {
-        return QuoteSourceAPIResource::collection(QuoteSource::all()->sortBy('priority'));
+        return QuoteSourceAPIResource::collection(
+            QuoteSource::all()->sortBy('priority')
+        );
     }
 
     /**
@@ -32,7 +34,7 @@ class QuoteSourceController extends Controller
     public function show(Request $request, $id)
     {
         session()->reflash();
-        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();          // get QuoteRequest
+        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();
         $quoteSources = QuoteSourceService::getQuoteSources($quoteRequest);
         $quoteSources = $quoteSources->sortBy('id')->sortBy('priority');
         return QuoteSourceResource::collection($quoteSources);
