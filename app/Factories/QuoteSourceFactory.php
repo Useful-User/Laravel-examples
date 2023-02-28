@@ -17,8 +17,8 @@ class QuoteSourceFactory
      */
     public function getServiceById(string $id): QuoteSourceServiceContract
     {
-        $quote_service = QuoteSource::find($id);
-        $full_service_name = 'App\Services\QuoteSources\\' . $quote_service->resource;
-        return new $full_service_name;
+        $quoteService = QuoteSource::find($id);
+        $fullServiceName = 'App\Services\QuoteSources\\' . $quoteService->resource;
+        return new $fullServiceName;
     }
 }

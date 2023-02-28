@@ -18,7 +18,7 @@ class QuoteSourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list()
+    public function index()
     {
         return QuoteSourceAPIResource::collection(
             QuoteSource::all()->sortBy('priority')

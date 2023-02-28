@@ -48,9 +48,9 @@ class QuoteRequestController extends Controller
         $quoteRequest->save();                                              // save
 
         session()->reflash();
-        $quote_factory = new QuoteSourceFactory();
-        $quote_service = $quote_factory->getServiceById($request->quote_source_id);
-        $quote = $quote_service->getQuote($quoteRequest);
+        $quoteFactory = new QuoteSourceFactory();
+        $quoteService = $quoteFactory->getServiceById($request->quote_source_id);
+        $quote = $quoteService->getQuote($quoteRequest);
         return [
             'data' => [
                 'quote' => $quote,
@@ -80,7 +80,7 @@ class QuoteRequestController extends Controller
     }
 
     /**
-     * Get Quote Requests with callbacks by filters.
+     * Get Quote Requests with status by filters.
      *
      * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
      * @return \Illuminate\Http\Response

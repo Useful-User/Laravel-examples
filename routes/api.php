@@ -32,12 +32,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('quoterequest')->group(function () {
         Route::post('/list', [QuoteRequestController::class, 'list'])
             ->name('quoterequest.list');
-        Route::get('/statuses', [QuoteRequestStatusController::class, 'quoteRequestStatuses'])
+        Route::get('/statuses', [QuoteRequestStatusController::class, 'index'])
             ->name('quoterequest.statuses');
     });
 
-    Route::prefix('quotesource')->group(function () {
-        Route::get('/list', [QuoteSourceController::class, 'list'])
+    Route::prefix('quotesources')->group(function () {
+        Route::get('/', [QuoteSourceController::class, 'index'])
             ->name('quotesource.list');
     });
 });
