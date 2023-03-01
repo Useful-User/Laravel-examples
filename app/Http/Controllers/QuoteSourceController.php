@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Resources\QuoteSourceAPIResource;
@@ -16,9 +18,11 @@ class QuoteSourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list()
+    public function index()
     {
-        return QuoteSourceAPIResource::collection(QuoteSource::all()->sortBy('priority'));
+        return QuoteSourceAPIResource::collection(
+            QuoteSource::all()->sortBy('priority')
+        );
     }
 
     /**
@@ -30,7 +34,7 @@ class QuoteSourceController extends Controller
     public function show(Request $request, $id)
     {
         session()->reflash();
-        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();          // get QuoteRequest
+        $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();
         $quoteSources = QuoteSourceService::getQuoteSources($quoteRequest);
         $quoteSources = $quoteSources->sortBy('id')->sortBy('priority');
         return QuoteSourceResource::collection($quoteSources);

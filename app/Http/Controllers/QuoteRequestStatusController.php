@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\QuoteRequest;
@@ -12,7 +14,7 @@ class QuoteRequestStatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function quoteRequestStatuses()
+    public function index()
     {
         $data = QuoteRequest::select('quote_request_status_id')
             ->distinct()

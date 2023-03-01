@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use App\Http\Requests\ListQuoteRequestRequest;
@@ -33,7 +35,7 @@ class QuoteRequestService
         $ids = $quoteRequests->get()->pluck('id');
         $result = QuoteRequest::with('status', 'quoteSource')->whereIn('id', $ids);
         if ($request->sort) {                                                                                               // sorting
-            $direction = isset($request->sort['direction']) ? $request->sort['direction'] : 'asc';
+            $direction = $request->sort['direction'] ?? 'asc';
             $result = $result->orderBy($request->sort['by'], $direction);
         }
         return $request->per_page ? $result->paginate($request->per_page) : $result->get();

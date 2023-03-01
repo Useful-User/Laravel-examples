@@ -3,6 +3,9 @@
 
 ## Examples of using different programming approaches ##
 
+### strict_types ###
+declare(strict_types=1) - strong typing improves performance and reduces bugs. I use this in every file I create.
+
 ### Resources ###  
 One of the use cases for resources is the pre-known and controlled output of information. The model may change during development. As a result, confidential information may be compromised. To avoid this, you can use Resources.  
 The resource can be used for a single object or for a collection of objects.  
@@ -39,6 +42,8 @@ Middleware is used by the "back" group in [web routes](routes/web.php).
 - Using Laravel Query Builder instead of Eloquent ORM: [getFiltered method](app/Services/QuoteRequestService.php)  
 - Using data from related tables in [Resource](app/Http/Resources/ListQuoteRequestResource.php)  
 
+### PSR ###
+PSR-12 - Extended Coding Style. I use this spec when writing all my code and always check before committing.
 
 ### The logic of working (on the example of Postman) ###
 1. Import Postman [environment and collection](documentation/postman)
@@ -53,15 +58,16 @@ Middleware is used by the "back" group in [web routes](routes/web.php).
     - GET request to /back/quotesources/{token} - should also contain **token** from the redirect link. Returns quote sources available for this request.
     - PUT request to /back/quoterequest - should contain the id of the quote source. Returns a quote!
 
-
 ## Branches ##
-This project follows the gitflow branching model. And [Trello](https://trello.com/b/59M7MZHU/laravel-examples) is used for task tracking
+This project follows the **gitflow** branching model. And [Trello](https://trello.com/b/59M7MZHU/laravel-examples) is used for task tracking
 
 **MAIN** - Stores the official release history. Current version is 1.0
 
 release/**1.0** - v1.0
 
 **Develop** - Integration branch for features. All magic happens here! 🪄
+
+feature/**LE-7** - Refactoring all previous code and looking for ways to improve it. Fixed method and variable names not matching PSR-12. Adding declare(strict_types=1) and missing PhpDoc.
 
 feature/**LE-6** - Adding a Signature service to create unique tokens, signatures and verify them. Add token to hide internal number of request. Change the working logic from using an id to a token. Adding the Postman collection to the project.
 

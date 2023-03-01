@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Http\Requests\UpdateQuoteRequestRequest;
@@ -49,6 +51,10 @@ class QuoteSource extends Model
      */
     public static function methodAvailable(UpdateQuoteRequestRequest $request)
     {
-        return boolval(self::where('id', $request->quote_source_id)->where('availability', 1)->count());
+        return boolval(
+            self::where('id', $request->quote_source_id)
+                ->where('availability', 1)
+                ->count()
+        );
     }
 }

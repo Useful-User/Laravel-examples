@@ -898,10 +898,10 @@
 							]
 						},
 						{
-							"name": "Quote Source",
+							"name": "Quotesources",
 							"item": [
 								{
-									"name": "list",
+									"name": "/",
 									"event": [
 										{
 											"listen": "test",
@@ -941,14 +941,13 @@
 											"formdata": []
 										},
 										"url": {
-											"raw": "{{URL}}/api/quotesource/list",
+											"raw": "{{URL}}/api/quotesources",
 											"host": [
 												"{{URL}}"
 											],
 											"path": [
 												"api",
-												"quotesource",
-												"list"
+												"quotesources"
 											]
 										}
 									},
