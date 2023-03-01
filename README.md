@@ -67,6 +67,8 @@ release/**1.0** - v1.0
 
 **Develop** - Integration branch for features. All magic happens here! 🪄
 
+feature/**LE-7** - Refactoring all previous code and looking for ways to improve it. Fixed method and variable names not matching PSR-12. Adding declare(strict_types=1) and missing PhpDoc.
+
 feature/**LE-6** - Adding a Signature service to create unique tokens, signatures and verify them. Add token to hide internal number of request. Change the working logic from using an id to a token. Adding the Postman collection to the project.
 
 feature/**LE-5** - Adding fake quote requests to the database. Creating filtering and pagination logic in the quoterequest/list route. Creating a QuoteRequestService to move the filtering logic from the controller to a separate service.
