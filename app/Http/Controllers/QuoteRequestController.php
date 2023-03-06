@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Factories\QuoteSourceFactory;
+use App\Factories\SourceKitFactory;
 use App\Http\Requests\ListQuoteRequestRequest;
 use App\Http\Requests\StoreQuoteRequestRequest;
 use App\Http\Requests\UpdateQuoteRequestRequest;
@@ -32,7 +32,7 @@ class QuoteRequestController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. And return requested data
      *
      * @param  \App\Http\Requests\UpdateQuoteRequestRequest  $request
      * @param  int  $id
@@ -47,13 +47,18 @@ class QuoteRequestController extends Controller
         $quoteRequest->quote_source_id = $request->quote_source_id;         // add quote_source_id for quoteReques
         $quoteRequest->save();                                              // save
 
+        $factory = (new SourceKitFactory())->getFactory($request->quote_source_id);
+        $quote = $factory->buildQuote();
+        $quote->request();
+        $image = $factory->buildImage();
+        $image->request();
+
         session()->reflash();
-        $quoteFactory = new QuoteSourceFactory();
-        $quoteService = $quoteFactory->getServiceById($request->quote_source_id);
-        $quote = $quoteService->getQuote($quoteRequest);
         return [
             'data' => [
-                'quote' => $quote,
+                'quote'         => $quote->get(),
+                'image'         => $image->get(),
+                'image_size'    => $image->size(),
             ]
         ];
     }
