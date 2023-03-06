@@ -17,16 +17,21 @@ Collection of objects: [list and show methods](app/Http/Controllers/QuoteSourceC
 
 ### Interfaces ###  
 Interfaces in laravel are called - Contracts. The framework's standard contracrs can be found at vendor/laravel/framework/src/Illuminate/Contracts  
-I am creating a Quote Source contract and it must be implemented on every quote source.  
+I have created several contracts and they are used in every quote/image source.  
 *Examples:*  
-[Contract (Interface)](app/Contracts/QuoteSourceServiceContract.php)  
-[Classes](app/Services/QuoteSources)
+[Contracts (Interfaces)](app/Contracts)  
+[Sources (Classes)](app/Services/Sources)
 
-### Factory (Factory Method) ###
-Since we have several quote sources and they all implement the same interface, we can create a Factory. The factory will return a specific object based on the input. Now we can add more sources with different logic, but we will still use the same Factory to use them.  
+### Abstract Factory ###
+Since we have several quote/image sources and they all implement the same interface, we can create a Factories. The factories will return a specific object. 
+Now we can add more sources with different logic and Factories to use them.
 *Examples:*  
-[Factory](app/Factories/QuoteSourceFactory.php) - returns the object based on the source id from the database.  
+[Contract (Interface)](app/Contracts/SourceFactoryContract.php)  
+[Factories](app/Factories) - creates and returns objects.  
 Usage: [update method](app/Http/Controllers/QuoteRequestController.php)  
+
+![AbstractFactory](documentation/img/AbstractFactory.png)
+[This diagram in Figma](https://www.figma.com/file/Y5zck9Dn8luq3QGimqzf7b/FactoryMethod?node-id=15%3A324&t=OqKj4zevmW4GJsnH-1)
 
 ### Sessions and unique tokens ###
 How to determinate user while showing request information?  
@@ -66,6 +71,8 @@ This project follows the **gitflow** branching model. And [Trello](https://trell
 release/**1.0** - v1.0
 
 **Develop** - Integration branch for features. All magic happens here! 🪄
+
+feature/**LE-8** - Created an Abstract Factory and changed the implementation of the request to get information about the quote in the controller. Removed classes that are no longer used.  
 
 feature/**LE-7** - Refactoring all previous code and looking for ways to improve it. Fixed method and variable names not matching PSR-12. Adding declare(strict_types=1) and missing PhpDoc.
 

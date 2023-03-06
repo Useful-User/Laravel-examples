@@ -28,6 +28,7 @@ class QuoteSource extends Model
         'name',
         'key',
         'url',
+        'image_url',
         'resource',
         'priority',
         'availability',
