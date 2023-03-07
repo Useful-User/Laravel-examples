@@ -4,21 +4,34 @@ declare(strict_types=1);
 
 namespace App\Factories;
 
-use App\Contracts\SourceFactoryContract;
+use App\Contracts\QuoteResponseContract;
+use App\Contracts\SourceKitFactoryContract;
 use App\Models\QuoteSource;
 
-class SourceKitFactory
+class SourceKitFactory implements SourceKitFactoryContract
 {
     /**
-     * Get source factory
+     * Get full quote
      * 
      * @param string $id QuoteSource id
-     * @return \App\Contracts\SourceFactoryContract
+     * @return \App\Contracts\QuoteResponseContract
      */
-    public function getFactory(string $id): SourceFactoryContract
+    public function build(string $id, string $type): QuoteResponseContract
     {
         $quoteService = QuoteSource::find($id);
-        $fullServiceName = '\App\Factories\\' . $quoteService->resource . 'Factory';
-        return new $fullServiceName;
+        $serviceName = $quoteService->resource;
+        switch ($type) {
+            case 'full':
+                $name = '\App\Services\Responses\Full\\' . $serviceName . 'FullQuote';
+                break;
+
+            case 'single':
+                $name = '\App\Services\Responses\Single\\' . $serviceName . 'SingleQuote';
+                break;
+
+            default:
+                throw new \Exception('Unsupported type: ' . $type);
+        }
+        return new $name();
     }
 }

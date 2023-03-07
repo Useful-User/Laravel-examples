@@ -30,8 +30,24 @@ Now we can add more sources with different logic and Factories to use them.
 [Factories](app/Factories) - creates and returns objects.  
 Usage: [update method](app/Http/Controllers/QuoteRequestController.php)  
 
-![AbstractFactory](documentation/img/AbstractFactory.png)
-[This diagram in Figma](https://www.figma.com/file/Y5zck9Dn8luq3QGimqzf7b/FactoryMethod?node-id=15%3A324&t=OqKj4zevmW4GJsnH-1)
+### Factory Method ###
+Abstract factories can have many different methods, and we can create multiple sets of these methods. Using factories in this way is called Factory Method.  
+I created 2 quote sets in this project using an abstract class and final classes that extend them. Now I can use the final classes on the controller without having to request the whole set of methods.  
+*Examples:*  
+[Contract (Interface)](app/Contracts/QuoteResponseContract.php)  
+[Full Set Abstract class](app/Services/Responses/Full/FullQuote.php)  
+[Simple Set Abstract class](app/Services/Responses/Single/SingleQuote.php)  
+[Sets](app/Services/Responses/)  
+
+### Simple Factory ###
+I'm using a simple factory to get a specific object based on input.  
+*Examples:*  
+[Contract (Interface)](app/Contracts/SourceKitFactoryContract.php)  
+[Simple Factory](app/Factories/SourceKitFactory.php)  
+
+### Diagram ###
+![Project Diagram](documentation/img/ProjectDiagram.png)
+[This diagram in Figma](https://www.figma.com/file/Y5zck9Dn8luq3QGimqzf7b/Laravel-Examples?node-id=45%3A266&t=df6FGK6lEJIuh7nO-1)
 
 ### Sessions and unique tokens ###
 How to determinate user while showing request information?  
@@ -71,6 +87,8 @@ This project follows the **gitflow** branching model. And [Trello](https://trell
 release/**1.0** - v1.0
 
 **Develop** - Integration branch for features. All magic happens here! 🪄
+
+feature/**LE-9** - Factory method: use previously created abstract factories on special Response services. Created methods to get different types of responses in SourceKitFactory. And Simple factory design pattern in SourceKitFactory.  
 
 feature/**LE-8** - Created an Abstract Factory and changed the implementation of the request to get information about the quote in the controller. Removed classes that are no longer used.  
 
