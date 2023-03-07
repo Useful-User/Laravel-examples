@@ -47,19 +47,11 @@ class QuoteRequestController extends Controller
         $quoteRequest->quote_source_id = $request->quote_source_id;         // add quote_source_id for quoteReques
         $quoteRequest->save();                                              // save
 
-        $factory = (new SourceKitFactory())->getFactory($request->quote_source_id);
-        $quote = $factory->buildQuote();
-        $quote->request();
-        $image = $factory->buildImage();
-        $image->request();
+        $fullQuote = (new SourceKitFactory())->build($request->quote_source_id, 'full');
 
         session()->reflash();
         return [
-            'data' => [
-                'quote'         => $quote->get(),
-                'image'         => $image->get(),
-                'image_size'    => $image->size(),
-            ]
+            'data' => $fullQuote->get(),
         ];
     }
 
