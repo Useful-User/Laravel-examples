@@ -6,17 +6,15 @@ namespace App\Services;
 
 use App\Http\Requests\ListQuoteRequestRequest;
 use App\Models\QuoteRequest;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class QuoteRequestService
 {
     /**
      * Get Quote Request by filters.
-     *
-     * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
-     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public static function getFiltered(ListQuoteRequestRequest $request)
+    public static function getFiltered(ListQuoteRequestRequest $request): Collection
     {
         $quoteRequests =  DB::table('quote_requests')->select('id');                                                        // get id's of all quote requests
         if ($request->from) $quoteRequests = $quoteRequests->where('created_at', '>=', $request->from);                     // 'created_at' after 'from' date

@@ -18,7 +18,7 @@ class QuoteRequestFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'external_id'               => $this->faker->unique()->numberBetween(100, 999),

@@ -10,15 +10,14 @@ use App\Models\QuoteRequest;
 use App\Models\QuoteSource;
 use App\Services\QuoteSourceService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class QuoteSourceController extends Controller
 {
     /**
-     * Get all available quote sources
-     *
-     * @return \Illuminate\Http\Response
+     * Get all available quote sources.
      */
-    public function index()
+    public function index(): JsonResource
     {
         return QuoteSourceAPIResource::collection(
             QuoteSource::all()->sortBy('priority')
@@ -26,12 +25,9 @@ class QuoteSourceController extends Controller
     }
 
     /**
-     * Get available Sources for current Quote Request
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Get available Sources for current Quote Request.
      */
-    public function show(Request $request, $id)
+    public function show(string $id): JsonResource
     {
         session()->reflash();
         $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();

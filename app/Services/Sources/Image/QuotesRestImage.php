@@ -12,17 +12,17 @@ use Illuminate\Support\Facades\Http;
 class QuotesRestImage implements ImageContract
 {
     /**
-     * All data about Image
+     * All data about image.
      */
     private $data = [];
 
     /**
-     * Url of Image
+     * Image url.
      */
     private $url = '';
 
     /**
-     * Make request
+     * Make request.
      */
     public function request(): void
     {
@@ -40,9 +40,7 @@ class QuotesRestImage implements ImageContract
     }
 
     /**
-     * Get Image url
-     * 
-     * @return string Image url as a string
+     * Get image url.
      */
     public function get(): string
     {
@@ -50,9 +48,7 @@ class QuotesRestImage implements ImageContract
     }
 
     /**
-     * Get Size
-     * 
-     * @return string Size as a string
+     * Get image size.
      */
     public function size(): string
     {

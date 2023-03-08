@@ -13,9 +13,7 @@ use App\Services\Sources\Quote\FavqsQuote;
 class FavqsFactory implements SourceFactoryContract
 {
     /**
-     * Build Quote
-     * 
-     * @return App\Contracts\QuoteContract
+     * Build Quote.
      */
     public function buildQuote(): QuoteContract
     {
@@ -23,9 +21,7 @@ class FavqsFactory implements SourceFactoryContract
     }
 
     /**
-     * Build Image
-     * 
-     * @return App\Contracts\ImageContract
+     * Build Image.
      */
     public function buildImage(): ImageContract
     {

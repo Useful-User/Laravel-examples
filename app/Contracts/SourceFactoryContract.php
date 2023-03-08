@@ -7,16 +7,12 @@ namespace App\Contracts;
 interface SourceFactoryContract
 {
     /**
-     * Build Quote
-     * 
-     * @return App\Contracts\QuoteContract
+     * Build Quote.
      */
     public function buildQuote(): QuoteContract;
 
     /**
-     * Build Image
-     * 
-     * @return App\Contracts\ImageContract
+     * Build Image.
      */
     public function buildImage(): ImageContract;
 }

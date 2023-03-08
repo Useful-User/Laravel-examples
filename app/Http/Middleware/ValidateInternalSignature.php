@@ -7,17 +7,16 @@ namespace App\Http\Middleware;
 use App\Services\Signature;
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ValidateInternalSignature
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         $signature = new Signature(config('app.internal_key'));
         if (session()->get('s') === null) abort(400, "Signature not valid");

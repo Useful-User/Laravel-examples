@@ -11,10 +11,7 @@ use App\Models\QuoteSource;
 class SourceKitFactory implements SourceKitFactoryContract
 {
     /**
-     * Get full quote
-     * 
-     * @param string $id QuoteSource id
-     * @return \App\Contracts\QuoteResponseContract
+     * Get full quote.
      */
     public function build(string $id, string $type): QuoteResponseContract
     {

@@ -12,9 +12,9 @@ class QuoteRequestStatusController extends Controller
     /**
      * Get list of Quote Request statuses.
      *
-     * @return \Illuminate\Http\Response
+     * @return array<int, string>
      */
-    public function index()
+    public function index(): array
     {
         $data = QuoteRequest::select('quote_request_status_id')
             ->distinct()

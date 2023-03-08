@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\Http;
 class FavqsQuote implements QuoteContract
 {
     /**
-     * All data about quote
+     * All quote data.
      */
     private $data = [];
 
     /**
-     * Make request
+     * Make request.
      */
     public function request(): void
     {
@@ -35,9 +35,7 @@ class FavqsQuote implements QuoteContract
     }
 
     /**
-     * Get Quote
-     * 
-     * @return string Quote as a string
+     * Get quote.
      */
     public function get(): string
     {
@@ -45,9 +43,7 @@ class FavqsQuote implements QuoteContract
     }
 
     /**
-     * Get Author
-     * 
-     * @return string Author as a string
+     * Get author.
      */
     public function author(): string
     {

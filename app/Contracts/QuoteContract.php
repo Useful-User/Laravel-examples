@@ -7,21 +7,17 @@ namespace App\Contracts;
 interface QuoteContract
 {
     /**
-     * Make request
+     * Make request.
      */
     public function request(): void;
 
     /**
-     * Get Quote
-     * 
-     * @return string Quote as a string
+     * Get Quote.
      */
     public function get(): string;
 
     /**
-     * Get Author
-     * 
-     * @return string Author as a string
+     * Get Author.
      */
     public function author(): string;
 }
