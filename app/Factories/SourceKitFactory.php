@@ -13,7 +13,7 @@ class SourceKitFactory implements SourceKitFactoryContract
     /**
      * Get full quote.
      */
-    public function build(string $id, string $type): QuoteResponseContract
+    public function build(string|int $id, string $type): QuoteResponseContract
     {
         $quoteService = QuoteSource::find($id);
         $serviceName = $quoteService->resource;

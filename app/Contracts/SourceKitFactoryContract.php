@@ -9,5 +9,5 @@ interface SourceKitFactoryContract
     /**
      * Get quote for response.
      */
-    public function build(string $id, string $type): QuoteResponseContract;
+    public function build(string|int $id, string $type): QuoteResponseContract;
 }
