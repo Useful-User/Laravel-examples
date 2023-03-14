@@ -17,7 +17,7 @@ class FavqsFactory implements SourceFactoryContract
      */
     public function buildQuote(): QuoteContract
     {
-        return new FavqsQuote();
+        return app(FavqsQuote::class);
     }
 
     /**
@@ -25,6 +25,6 @@ class FavqsFactory implements SourceFactoryContract
      */
     public function buildImage(): ImageContract
     {
-        return new FavqsImage();
+        return app(FavqsImage::class);
     }
 }

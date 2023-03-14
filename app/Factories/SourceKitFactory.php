@@ -29,6 +29,6 @@ class SourceKitFactory implements SourceKitFactoryContract
             default:
                 throw new \Exception('Unsupported type: ' . $type);
         }
-        return new $name();
+        return app($name);
     }
 }

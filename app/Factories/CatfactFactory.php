@@ -17,7 +17,7 @@ class CatfactFactory implements SourceFactoryContract
      */
     public function buildQuote(): QuoteContract
     {
-        return new CatfactQuote();
+        return app(CatfactQuote::class);
     }
 
     /**
@@ -25,6 +25,6 @@ class CatfactFactory implements SourceFactoryContract
      */
     public function buildImage(): ImageContract
     {
-        return new CatfactImage();
+        return app(CatfactImage::class);
     }
 }

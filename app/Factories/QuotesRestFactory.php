@@ -17,7 +17,7 @@ class QuotesRestFactory implements SourceFactoryContract
      */
     public function buildQuote(): QuoteContract
     {
-        return new QuotesRestQuote();
+        return app(QuotesRestQuote::class);
     }
 
     /**
@@ -25,6 +25,6 @@ class QuotesRestFactory implements SourceFactoryContract
      */
     public function buildImage(): ImageContract
     {
-        return new QuotesRestImage();
+        return app(QuotesRestImage::class);
     }
 }
