@@ -58,6 +58,11 @@ You can generate a unique random token when starting a conversation and store it
 My interpretation contains [Signature service](app/Services/Signature.php) with unique token, hash and validation methods. I use the [ValidateInternalSignature](app/Http/Middleware/ValidateInternalSignature.php) middleware to validate requests.  
 Middleware is used by the "back" group in [web routes](routes/web.php).  
 
+### Tests ###
+In this project, the tests were created after the code was written. And they helped to find some errors with types and show problem areas for the next refactoring.  
+*Examples:*  
+[Feature tests](tests\Feature)  
+
 ### Other interesting parts ###
 - Changing the response code on failed validation: [failedValidation method](app/Http/Requests/StoreQuoteRequestRequest.php)  
 - Using Laravel Query Builder instead of Eloquent ORM: [getFiltered method](app/Services/QuoteRequestService.php)  
@@ -87,6 +92,8 @@ This project follows the **gitflow** branching model. And [Trello](https://trell
 release/**1.0** - v1.0
 
 **Develop** - Integration branch for features. All magic happens here! 🪄
+
+feature/**LE-11** - Add feature tests for all endpoints in api and web roures.
 
 feature/**LE-10** - Update to new Laravel version - 10. Clean up some PhpDoc due to using PHP Native Type Declarations. Refactoring of contracts and factories, checking for missing types and making sources more tastable.
 
