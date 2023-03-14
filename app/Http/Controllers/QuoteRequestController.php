@@ -15,16 +15,14 @@ use App\Models\QuoteSource;
 use App\Services\QuoteRequestService;
 use App\Services\Signature;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class QuoteRequestController extends Controller
 {
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $id): JsonResource
     {
         $quoteRequest = QuoteRequest::where('token', $id)->firstOrFail();
         session()->reflash();
@@ -32,13 +30,11 @@ class QuoteRequestController extends Controller
     }
 
     /**
-     * Update the specified resource in storage. And return requested data
-     *
-     * @param  \App\Http\Requests\UpdateQuoteRequestRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Update the specified resource in storage. And return requested data.
+     * 
+     * @return array<int, string>
      */
-    public function update(UpdateQuoteRequestRequest $request, $id)
+    public function update(UpdateQuoteRequestRequest $request, string $id): array
     {
         // check for availability
         if (!QuoteSource::methodAvailable($request)) abort(400, "Quote Source not allowed");
@@ -58,8 +54,7 @@ class QuoteRequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\StoreQuoteRequestRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
      */
     public function store(StoreQuoteRequestRequest $request)
     {
@@ -78,11 +73,8 @@ class QuoteRequestController extends Controller
 
     /**
      * Get Quote Requests with status by filters.
-     *
-     * @param  \App\Http\Requests\ListQuoteRequestRequest  $request
-     * @return \Illuminate\Http\Response
      */
-    public function list(ListQuoteRequestRequest $request)
+    public function list(ListQuoteRequestRequest $request): JsonResource
     {
         $quoteRequests = QuoteRequestService::getFiltered($request);
         return ListQuoteRequestResource::collection($quoteRequests);

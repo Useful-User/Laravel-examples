@@ -7,16 +7,14 @@ namespace App\Contracts;
 interface QuoteResponseContract
 {
     /**
-     * Get data
+     * Get data.
      * 
-     * @return array
+     * @return array<int, string>
      */
     public function get(): array; // @todo return a more specific object
 
     /**
-     * Return specific source factory
-     * 
-     * @return \App\Contracts\SourceFactoryContract
+     * Return specific source factory.
      */
     public function createSource(): SourceFactoryContract;
 }

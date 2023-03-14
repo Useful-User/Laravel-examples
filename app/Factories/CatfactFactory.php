@@ -13,22 +13,18 @@ use App\Services\Sources\Quote\CatfactQuote;
 class CatfactFactory implements SourceFactoryContract
 {
     /**
-     * Build Quote
-     * 
-     * @return App\Contracts\QuoteContract
+     * Build Quote.
      */
     public function buildQuote(): QuoteContract
     {
-        return new CatfactQuote();
+        return app(CatfactQuote::class);
     }
 
     /**
-     * Build Image
-     * 
-     * @return App\Contracts\ImageContract
+     * Build Image.
      */
     public function buildImage(): ImageContract
     {
-        return new CatfactImage();
+        return app(CatfactImage::class);
     }
 }

@@ -6,16 +6,14 @@ namespace App\Services;
 
 use App\Models\QuoteRequest;
 use App\Models\QuoteSource;
+use Illuminate\Database\Eloquent\Collection;
 
 class QuoteSourceService
 {
     /**
-     * Get available quoteSources for current Request 
-     * 
-     * @param App\Models\QuoteRequest
-     * @return \Illuminate\Database\Eloquent\Collection
+     * Get available quoteSources for current Request.
      */
-    public static function getQuoteSources(QuoteRequest $quoteRequest)
+    public static function getQuoteSources(QuoteRequest $quoteRequest): Collection
     {
         $quoteSources = QuoteSource::where('availability', 1)          // available
             // here can be lots of request conditions

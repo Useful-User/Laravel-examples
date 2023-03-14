@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class QuoteSourcesTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * Seed the application's database.
      */
-    public function run()
+    public function run(): void
     {
         DB::table('quote_sources')->insert([
             'name'          => 'quotes.rest',

@@ -5,17 +5,15 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * Seed the application's database.
      */
-    public function run()
+    public function run(): void
     {
         User::factory()->create([
             'name' => 'Test User',

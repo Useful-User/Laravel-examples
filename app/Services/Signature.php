@@ -11,7 +11,7 @@ class Signature
 {
 
     /**
-     * Key to generate hash
+     * Key to generate hash.
      *
      * @var string
      */
@@ -19,7 +19,7 @@ class Signature
 
     /**
      * Create a new signature instance.
-     *
+     * 
      * @return void
      */
     public function __construct(string $key)
@@ -28,10 +28,7 @@ class Signature
     }
 
     /**
-     * Create signature
-     * 
-     * @param array $data
-     * @return string
+     * Create signature.
      */
     public function generate(array $data): string
     {
@@ -42,11 +39,7 @@ class Signature
     }
 
     /**
-     * Check given signature
-     * 
-     * @param array $data
-     * @param string $signature
-     * @return bool
+     * Check given signature.
      */
     public function check(array $data, string $signature): bool
     {
@@ -57,12 +50,9 @@ class Signature
     }
 
     /**
-     * Generate unique token
-     * 
-     * @param string $tablename
-     * @return string
+     * Generate unique token.
      */
-    public static function uniqueToken(string $tablename)
+    public static function uniqueToken(string $tablename): string
     {
         do {
             $token  = Str::random(10);
@@ -74,12 +64,9 @@ class Signature
     }
 
     /**
-     * Generate internal signature
-     * 
-     * @param string $token
-     * @return string
+     * Generate internal signature.
      */
-    public static function internalSignature(string $token)
+    public static function internalSignature(string $token): string
     {
         $signature = new Signature(config('app.internal_key'));
         return $signature->generate(['token' => $token]);

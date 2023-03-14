@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Http\Requests\UpdateQuoteRequestRequest;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class QuoteSource extends Model
 {
@@ -22,7 +23,7 @@ class QuoteSource extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
@@ -37,20 +38,16 @@ class QuoteSource extends Model
     /**
      * Get the Quote Requests associated with this Quote Source.
      */
-    public function quoteRequests()
+    public function quoteRequests(): HasMany
     {
         return $this->hasMany(QuoteRequest::class);
     }
 
 
     /**
-     * Get availability of Quote Source
-     * 
-     * @param  \App\Http\Requests\UpdateQuoteRequestRequest  $request
-     * @return bool
-     * 
+     * Get availability of Quote Source.
      */
-    public static function methodAvailable(UpdateQuoteRequestRequest $request)
+    public static function methodAvailable(UpdateQuoteRequestRequest $request): bool
     {
         return boolval(
             self::where('id', $request->quote_source_id)

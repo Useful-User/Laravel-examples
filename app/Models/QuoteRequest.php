@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class QuoteRequest extends Model
 {
@@ -14,7 +15,7 @@ class QuoteRequest extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $fillable = [
         'external_id',
@@ -25,7 +26,7 @@ class QuoteRequest extends Model
     /**
      * Get Quote Request status.
      */
-    public function status()
+    public function status(): BelongsTo
     {
         return $this->belongsTo(QuoteRequestStatus::class, 'quote_request_status_id');
     }
@@ -33,7 +34,7 @@ class QuoteRequest extends Model
     /**
      * Get the Quote Source of the Quote Request.
      */
-    public function quoteSource()
+    public function quoteSource(): BelongsTo
     {
         return $this->belongsTo(QuoteSource::class);
     }

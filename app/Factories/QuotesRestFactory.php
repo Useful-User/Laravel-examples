@@ -13,22 +13,18 @@ use App\Services\Sources\Quote\QuotesRestQuote;
 class QuotesRestFactory implements SourceFactoryContract
 {
     /**
-     * Build Quote
-     * 
-     * @return App\Contracts\QuoteContract
+     * Build Quote.
      */
     public function buildQuote(): QuoteContract
     {
-        return new QuotesRestQuote();
+        return app(QuotesRestQuote::class);
     }
 
     /**
-     * Build Image
-     * 
-     * @return App\Contracts\ImageContract
+     * Build Image.
      */
     public function buildImage(): ImageContract
     {
-        return new QuotesRestImage();
+        return app(QuotesRestImage::class);
     }
 }

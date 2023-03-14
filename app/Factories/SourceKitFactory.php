@@ -11,12 +11,9 @@ use App\Models\QuoteSource;
 class SourceKitFactory implements SourceKitFactoryContract
 {
     /**
-     * Get full quote
-     * 
-     * @param string $id QuoteSource id
-     * @return \App\Contracts\QuoteResponseContract
+     * Get full quote.
      */
-    public function build(string $id, string $type): QuoteResponseContract
+    public function build(string|int $id, string $type): QuoteResponseContract
     {
         $quoteService = QuoteSource::find($id);
         $serviceName = $quoteService->resource;
@@ -32,6 +29,6 @@ class SourceKitFactory implements SourceKitFactoryContract
             default:
                 throw new \Exception('Unsupported type: ' . $type);
         }
-        return new $name();
+        return app($name);
     }
 }

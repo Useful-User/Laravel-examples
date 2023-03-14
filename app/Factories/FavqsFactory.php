@@ -13,22 +13,18 @@ use App\Services\Sources\Quote\FavqsQuote;
 class FavqsFactory implements SourceFactoryContract
 {
     /**
-     * Build Quote
-     * 
-     * @return App\Contracts\QuoteContract
+     * Build Quote.
      */
     public function buildQuote(): QuoteContract
     {
-        return new FavqsQuote();
+        return app(FavqsQuote::class);
     }
 
     /**
-     * Build Image
-     * 
-     * @return App\Contracts\ImageContract
+     * Build Image.
      */
     public function buildImage(): ImageContract
     {
-        return new FavqsImage();
+        return app(FavqsImage::class);
     }
 }

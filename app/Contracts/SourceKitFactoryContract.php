@@ -7,11 +7,7 @@ namespace App\Contracts;
 interface SourceKitFactoryContract
 {
     /**
-     * Get quote for response
-     * 
-     * @param string $id QuoteSource id
-     * @param string $type Type of quote
-     * @return \App\Contracts\QuoteResponseContract
+     * Get quote for response.
      */
-    public function build(string $id, string $type): QuoteResponseContract;
+    public function build(string|int $id, string $type): QuoteResponseContract;
 }

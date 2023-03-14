@@ -10,30 +10,29 @@ use App\Models\QuoteSource;
 class CatfactImage implements ImageContract
 {
     /**
-     * All data about Image
+     * All data about image.
      */
     private $data = [];
 
     /**
-     * Url of Image
+     * Image url.
      */
     private $url = '';
 
     /**
-     * Make request
+     * Make request.
      */
     public function request(): void
     {
-        $name = str_replace('Image', '', class_basename($this::class));
+        // Remove last 'Quote' from class name
+        $name = preg_replace('/(Image(?!.*Image))/', '', class_basename($this::class));
         $this->url = QuoteSource::where('resource', $name)->firstOrFail()->image_url;
         $size = getimagesize($this->url);
         $this->data['size'] = $size;
     }
 
     /**
-     * Get Image url
-     * 
-     * @return string Image url as a string
+     * Get image url.
      */
     public function get(): string
     {
@@ -41,9 +40,7 @@ class CatfactImage implements ImageContract
     }
 
     /**
-     * Get Size
-     * 
-     * @return string Size as a string
+     * Get image size.
      */
     public function size(): string
     {

@@ -12,16 +12,22 @@ use Illuminate\Support\Facades\Http;
 class QuotesRestQuote implements QuoteContract
 {
     /**
-     * All data about quote
+     * Quote.
      */
-    private $data = [];
+    private $quote = 'No Quote';
 
     /**
-     * Make request
+     * Author.
+     */
+    private $author = 'No Author';
+
+    /**
+     * Make request.
      */
     public function request(): void
     {
-        $name = str_replace('Quote', '', class_basename($this::class));
+        // Remove last 'Quote' from class name
+        $name = preg_replace('/(Quote(?!.*Quote))/', '', class_basename($this::class));
         $url = QuoteSource::where('resource', $name)->firstOrFail()->url;
 
         try {
@@ -31,26 +37,23 @@ class QuotesRestQuote implements QuoteContract
             abort(403, "Something went wrong while performing your request, please contact customer support");
         }
 
-        $this->data = $response;
+        $this->quote = $response['contents']['quotes'][0]['quote'];
+        $this->author = $response['contents']['quotes'][0]['author'];
     }
 
     /**
-     * Get Quote
-     * 
-     * @return string Quote as a string
+     * Get quote.
      */
     public function get(): string
     {
-        return $this->data['contents']['quotes'][0]['quote'];
+        return $this->quote;
     }
 
     /**
-     * Get Author
-     * 
-     * @return string Author as a string
+     * Get author.
      */
     public function author(): string
     {
-        return $this->data['contents']['quotes'][0]['author'];
+        return $this->author;
     }
 }
