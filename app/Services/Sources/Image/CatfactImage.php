@@ -24,7 +24,8 @@ class CatfactImage implements ImageContract
      */
     public function request(): void
     {
-        $name = str_replace('Image', '', class_basename($this::class));
+        // Remove last 'Quote' from class name
+        $name = preg_replace('/(Image(?!.*Image))/', '', class_basename($this::class));
         $this->url = QuoteSource::where('resource', $name)->firstOrFail()->image_url;
         $size = getimagesize($this->url);
         $this->data['size'] = $size;
