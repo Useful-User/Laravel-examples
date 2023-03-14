@@ -88,6 +88,8 @@ release/**1.0** - v1.0
 
 **Develop** - Integration branch for features. All magic happens here! 🪄
 
+feature/**LE-10** - Update to new Laravel version - 10. Clean up some PhpDoc due to using PHP Native Type Declarations. Refactoring of contracts and factories, checking for missing types and making sources more tastable.
+
 feature/**LE-9** - Factory method: use previously created abstract factories on special Response services. Created methods to get different types of responses in SourceKitFactory. And Simple factory design pattern in SourceKitFactory.  
 
 feature/**LE-8** - Created an Abstract Factory and changed the implementation of the request to get information about the quote in the controller. Removed classes that are no longer used.  
